@@ -9,39 +9,37 @@
   }
 }
 
-/* Custom Blue Gingham Background */
-.bg-gingham {
-  background-color: #F3F8FE;
+/* 2-Luv Ambient Warm Canvas */
+body {
+  background-color: #FFF8F3;
   background-image: 
-    linear-gradient(90deg, rgba(191, 219, 254, 0.45) 50%, transparent 50%),
-    linear-gradient(rgba(191, 219, 254, 0.45) 50%, transparent 50%);
-  background-size: 32px 32px;
+    radial-gradient(at 0% 0%, rgba(253, 164, 175, 0.22) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(186, 230, 253, 0.25) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(254, 240, 138, 0.22) 0px, transparent 50%);
+  background-attachment: fixed;
 }
 
-/* Washi Tape Ribbon Decorator */
-.washi-tape-blue {
-  background: rgba(147, 197, 253, 0.7);
+/* 2-Luv Washi Tape */
+.washi-tape-pink {
+  background: rgba(253, 164, 175, 0.85);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   clip-path: polygon(0% 0%, 100% 0%, 98% 100%, 2% 100%);
-  backdrop-blur: 2px;
+  backdrop-filter: blur(2px);
 }
 
-.washi-tape-stripes {
-  background: repeating-linear-gradient(
-    45deg,
-    rgba(147, 197, 253, 0.75),
-    rgba(147, 197, 253, 0.75) 6px,
-    rgba(255, 255, 255, 0.8) 6px,
-    rgba(255, 255, 255, 0.8) 12px
-  );
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+.washi-tape-blue {
+  background: rgba(147, 197, 253, 0.85);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  clip-path: polygon(0% 0%, 100% 0%, 98% 100%, 2% 100%);
+  backdrop-filter: blur(2px);
 }
 
-/* Notebook paper faint lines */
-.lined-paper {
-  background-color: #FFFDF9;
-  background-image: linear-gradient(rgba(191, 219, 254, 0.35) 1px, transparent 1px);
-  background-size: 100% 28px;
+/* 3D Glass & Neomorphic Panels */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
 }
 
 /* Custom Scrollbar */
@@ -49,19 +47,19 @@
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F0F6FC;
+  background: #FFF8F3;
 }
 ::-webkit-scrollbar-thumb {
-  background: #93C5FD;
+  background: #FDA4AF;
   border-radius: 9999px;
 }
 
-/* Floating animation */
-@keyframes softFloat {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-6px) rotate(1deg); }
+/* Shimmer animation */
+@keyframes shimmerPulse {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.03); }
 }
 
-.animate-soft-float {
-  animation: softFloat 4s ease-in-out infinite;
+.animate-shimmer {
+  animation: shimmerPulse 3.5s ease-in-out infinite;
 }

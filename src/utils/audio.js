@@ -1,5 +1,5 @@
-// Web Audio API Synthesizer for Birthday Music & Scrapbook SFX
-class SoundController {
+// Web Audio API Synthesizer for 2-Luv Birthday Experience SFX & Ambient Music
+class SoundEngine {
   constructor() {
     this.ctx = null;
     this.isMuted = false;
@@ -20,7 +20,7 @@ class SoundController {
   toggleMute() {
     this.isMuted = !this.isMuted;
     if (this.isMuted && this.isPlayingMusic) {
-      this.stopMusic();
+      this.stopBGM();
     }
     return this.isMuted;
   }
@@ -42,140 +42,221 @@ class SoundController {
     } catch {}
   }
 
-  // Envelope opening / Page flip swoosh chime
-  playOpenEnvelope() {
-    this.init();
-    if (this.isMuted) return;
-    const notes = [523.25, 659.25, 783.99, 1046.50, 1318.51];
-    notes.forEach((f, i) => {
-      setTimeout(() => {
-        this.playTone(f, 'sine', 0.45, 0.16);
-      }, i * 75);
-    });
-  }
-
-  // Camera shutter click for photobooth
-  playShutter() {
+  // 1. Wax Seal Break & Open Envelope Chime
+  playWaxSeal() {
     this.init();
     if (this.isMuted) return;
     try {
-      this.init();
+      // Crackle sound
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       osc.type = 'triangle';
-      osc.frequency.setValueAtTime(800, this.ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(200, this.ctx.currentTime + 0.08);
-      gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
+      osc.frequency.setValueAtTime(260, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(80, this.ctx.currentTime + 0.12);
+      gain.gain.setValueAtTime(0.18, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.12);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.12);
+
+      // Chime progression
+      const notes = [523.25, 659.25, 783.99, 1046.50, 1318.51];
+      notes.forEach((f, i) => {
+        setTimeout(() => {
+          this.playTone(f, 'sine', 0.45, 0.14);
+        }, 80 + i * 70);
+      });
+    } catch {}
+  }
+
+  // 2. Claw Machine: Move sound
+  playClawMove() {
+    this.init();
+    if (this.isMuted) return;
+    this.playTone(420, 'square', 0.06, 0.05);
+  }
+
+  // 2. Claw Machine: Grab click
+  playClawGrab() {
+    this.init();
+    if (this.isMuted) return;
+    this.playTone(320, 'triangle', 0.12, 0.15);
+    setTimeout(() => {
+      this.playTone(480, 'sine', 0.15, 0.12);
+    }, 120);
+  }
+
+  // 2. Claw Machine: Capsule open fanfare
+  playPrizeWin() {
+    this.init();
+    if (this.isMuted) return;
+    const fanfare = [523.25, 659.25, 783.99, 1046.50];
+    fanfare.forEach((f, i) => {
+      setTimeout(() => {
+        this.playTone(f, 'triangle', 0.35, 0.16);
+      }, i * 90);
+    });
+  }
+
+  // 3. Page Turn sound
+  playPageTurn() {
+    this.init();
+    if (this.isMuted) return;
+    try {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(180, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(450, this.ctx.currentTime + 0.15);
+      gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.15);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.15);
+    } catch {}
+  }
+
+  // 4. Star Wish Jar: Cork Pop & Star Shimmer
+  playCorkPop() {
+    this.init();
+    if (this.isMuted) return;
+    try {
+      // Pop!
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(400, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(120, this.ctx.currentTime + 0.08);
+      gain.gain.setValueAtTime(0.25, this.ctx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.08);
       osc.connect(gain);
       gain.connect(this.ctx.destination);
       osc.start();
       osc.stop(this.ctx.currentTime + 0.08);
 
-      setTimeout(() => {
-        this.playTone(1200, 'sine', 0.09, 0.15);
-      }, 90);
+      // Shimmering stars rising
+      const sparkles = [659.25, 783.99, 987.77, 1318.51, 1567.98, 1975.53];
+      sparkles.forEach((f, i) => {
+        setTimeout(() => {
+          this.playTone(f, 'sine', 0.4, 0.12);
+        }, 80 + i * 65);
+      });
     } catch {}
   }
 
-  // Blow out candle sound effect (wind whoosh + sparkle)
+  // 5. Photo Booth: Camera shutter & mechanical print
+  playPhotoPrint() {
+    this.init();
+    if (this.isMuted) return;
+    this.playTone(850, 'triangle', 0.07, 0.2);
+    setTimeout(() => {
+      this.playTone(1300, 'sine', 0.08, 0.15);
+    }, 70);
+    // Mechanical print sound
+    setTimeout(() => {
+      this.playTone(220, 'sawtooth', 0.25, 0.04);
+    }, 180);
+  }
+
+  // 6. Turntable: Tonearm scratch & vinyl spin
+  playVinylStart() {
+    this.init();
+    if (this.isMuted) return;
+    try {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(120, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(340, this.ctx.currentTime + 0.25);
+      gain.gain.setValueAtTime(0.06, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.25);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.25);
+    } catch {}
+  }
+
+  // 7. Candle Blowing & Grand Victory Fanfare
   playBlowCandles() {
     this.init();
     if (this.isMuted) return;
     try {
-      // Gentle puff whoosh
+      // Wind breath puff
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(320, this.ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(100, this.ctx.currentTime + 0.4);
-      gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.4);
+      osc.frequency.setValueAtTime(280, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(70, this.ctx.currentTime + 0.45);
+      gain.gain.setValueAtTime(0.22, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.45);
       osc.connect(gain);
       gain.connect(this.ctx.destination);
       osc.start();
-      osc.stop(this.ctx.currentTime + 0.4);
+      osc.stop(this.ctx.currentTime + 0.45);
 
-      // Magical sparkle celebration fanfare
+      // Celebration fanfare
       setTimeout(() => {
         const fanfare = [523.25, 659.25, 783.99, 1046.50, 1318.51, 1567.98];
         fanfare.forEach((f, i) => {
           setTimeout(() => {
             this.playTone(f, 'triangle', 0.6, 0.18);
-          }, i * 90);
+          }, i * 100);
         });
       }, 350);
     } catch {}
   }
 
-  // Gentle music box "Happy Birthday" lo-fi lullaby loop
-  startMusic() {
+  // Ambient Lo-Fi Background Music
+  startBGM() {
     this.init();
     if (this.isPlayingMusic) return;
     this.isPlayingMusic = true;
 
-    // Happy birthday melody notes in C Major (C4, D4, E4, F4, G4, A4, B4, C5)
+    // Gentle chord progression in F Major / D Minor (warm & dreamy)
     const melody = [
-      { f: 523.25, d: 0.35, pause: 400 }, // C
-      { f: 523.25, d: 0.35, pause: 400 }, // C
-      { f: 587.33, d: 0.6,  pause: 650 }, // D
-      { f: 523.25, d: 0.6,  pause: 650 }, // C
-      { f: 698.46, d: 0.6,  pause: 650 }, // F
-      { f: 659.25, d: 1.1,  pause: 1100 }, // E
-
-      { f: 523.25, d: 0.35, pause: 400 }, // C
-      { f: 523.25, d: 0.35, pause: 400 }, // C
-      { f: 587.33, d: 0.6,  pause: 650 }, // D
-      { f: 523.25, d: 0.6,  pause: 650 }, // C
-      { f: 783.99, d: 0.6,  pause: 650 }, // G
-      { f: 698.46, d: 1.1,  pause: 1100 }, // F
-
-      { f: 523.25, d: 0.35, pause: 400 }, // C
-      { f: 523.25, d: 0.35, pause: 400 }, // C
-      { f: 1046.50, d: 0.6, pause: 650 }, // C' (Octave)
-      { f: 880.00, d: 0.6,  pause: 650 }, // A
-      { f: 698.46, d: 0.6,  pause: 650 }, // F
-      { f: 659.25, d: 0.6,  pause: 650 }, // E
-      { f: 587.33, d: 0.9,  pause: 950 }, // D
-
-      { f: 932.33, d: 0.35, pause: 400 }, // Bb
-      { f: 932.33, d: 0.35, pause: 400 }, // Bb
-      { f: 880.00, d: 0.6,  pause: 650 }, // A
-      { f: 698.46, d: 0.6,  pause: 650 }, // F
-      { f: 783.99, d: 0.6,  pause: 650 }, // G
-      { f: 698.46, d: 1.4,  pause: 1600 } // F
+      { f: 659.25, d: 0.8, p: 900 },  // E5
+      { f: 587.33, d: 0.8, p: 900 },  // D5
+      { f: 523.25, d: 1.2, p: 1300 }, // C5
+      { f: 659.25, d: 0.8, p: 900 },  // E5
+      { f: 783.99, d: 1.0, p: 1100 }, // G5
+      { f: 698.46, d: 1.4, p: 1500 }, // F5
+      { f: 523.25, d: 0.8, p: 900 },  // C5
+      { f: 587.33, d: 1.2, p: 1300 }  // D5
     ];
 
-    let noteIndex = 0;
-    const playNextNote = () => {
+    let idx = 0;
+    const loop = () => {
       if (!this.isPlayingMusic) return;
-      const current = melody[noteIndex % melody.length];
       if (!this.isMuted) {
-        this.playTone(current.f, 'sine', current.d, 0.08);
-        // Soft harmony bass note
-        this.playTone(current.f * 0.5, 'triangle', current.d * 0.8, 0.04);
+        const note = melody[idx % melody.length];
+        this.playTone(note.f, 'sine', note.d, 0.07);
+        // Harmony note
+        this.playTone(note.f * 0.75, 'sine', note.d * 0.8, 0.03);
       }
-      noteIndex++;
-      this.timer = setTimeout(playNextNote, current.pause);
+      idx++;
+      this.timer = setTimeout(loop, melody[(idx - 1) % melody.length].p);
     };
 
-    playNextNote();
+    loop();
   }
 
-  stopMusic() {
+  stopBGM() {
     this.isPlayingMusic = false;
     if (this.timer) clearTimeout(this.timer);
   }
 
-  toggleMusic() {
+  toggleBGM() {
     if (this.isPlayingMusic) {
-      this.stopMusic();
+      this.stopBGM();
       return false;
     } else {
-      this.startMusic();
+      this.startBGM();
       return true;
     }
   }
 }
 
-export const sounds = new SoundController();
+export const sounds = new SoundEngine();
