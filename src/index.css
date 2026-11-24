@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Custom Blue Gingham Background */
+.bg-gingham {
+  background-color: #F3F8FE;
+  background-image: 
+    linear-gradient(90deg, rgba(191, 219, 254, 0.45) 50%, transparent 50%),
+    linear-gradient(rgba(191, 219, 254, 0.45) 50%, transparent 50%);
+  background-size: 32px 32px;
+}
+
+/* Washi Tape Ribbon Decorator */
+.washi-tape-blue {
+  background: rgba(147, 197, 253, 0.7);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  clip-path: polygon(0% 0%, 100% 0%, 98% 100%, 2% 100%);
+  backdrop-blur: 2px;
+}
+
+.washi-tape-stripes {
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(147, 197, 253, 0.75),
+    rgba(147, 197, 253, 0.75) 6px,
+    rgba(255, 255, 255, 0.8) 6px,
+    rgba(255, 255, 255, 0.8) 12px
+  );
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+/* Notebook paper faint lines */
+.lined-paper {
+  background-color: #FFFDF9;
+  background-image: linear-gradient(rgba(191, 219, 254, 0.35) 1px, transparent 1px);
+  background-size: 100% 28px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F0F6FC;
+}
+::-webkit-scrollbar-thumb {
+  background: #93C5FD;
+  border-radius: 9999px;
+}
+
+/* Floating animation */
+@keyframes softFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(1deg); }
+}
+
+.animate-soft-float {
+  animation: softFloat 4s ease-in-out infinite;
+}
