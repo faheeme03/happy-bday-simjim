@@ -15,27 +15,25 @@ export default {
       },
       colors: {
         brand: {
-          bg: '#FFF8F3',
+          bg: '#F0F7FF',
           card: '#FFFFFF',
-          text: '#2B1B2D',
-          muted: '#6B5E6E',
-          coral: '#E6496C',
-          pink: '#FF8DA1',
-          rose: '#FDA4AF',
-          blue: '#38BDF8',
-          royal: '#2563EB',
+          text: '#0F172A',
+          muted: '#475569',
+          primary: '#2563EB', // Royal Sapphire
+          secondary: '#38BDF8', // Cyan Sky
+          accent: '#1D4ED8',
+          ice: '#E0F2FE',
+          pale: '#F8FAFC',
           gold: '#F59E0B',
           amber: '#FBBF24',
-          lavender: '#E8DEF8',
-          mint: '#B7E4C7',
-          parchment: '#FDF5EE',
+          navy: '#1E3A8A',
         }
       },
       boxShadow: {
-        '2luv': '0 20px 45px -10px rgba(43, 27, 45, 0.12), 0 8px 16px -4px rgba(43, 27, 45, 0.06)',
-        'float': '0 12px 30px -4px rgba(230, 73, 108, 0.25)',
-        'polaroid': '0 10px 25px -4px rgba(43, 27, 45, 0.15)',
-        'arcade': '0 16px 36px -6px rgba(15, 23, 42, 0.35)',
+        '2luv': '0 20px 45px -10px rgba(30, 58, 138, 0.12), 0 8px 16px -4px rgba(30, 58, 138, 0.06)',
+        'float': '0 12px 30px -4px rgba(37, 99, 235, 0.35)',
+        'polaroid': '0 10px 25px -4px rgba(15, 23, 42, 0.12)',
+        'arcade': '0 20px 45px -8px rgba(30, 58, 138, 0.25)',
       }
     },
   },

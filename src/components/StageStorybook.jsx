@@ -54,21 +54,21 @@ export default function StageStorybook({ onNext }) {
   const curr = chapters[currentPage];
 
   return (
-    <div className="w-full max-w-md mx-auto flex flex-col items-center select-none py-3 px-2">
+    <div className="w-full max-w-md mx-auto flex flex-col items-center select-none py-2 px-2">
       {/* Surprise Subtitle */}
-      <div className="text-center mb-3">
-        <span className="text-[11px] font-mono font-bold tracking-widest text-[#E6496C] uppercase">
+      <div className="text-center mb-2">
+        <span className="text-[11px] font-mono font-bold tracking-widest text-[#2563EB] uppercase">
           SURPRISE 03 • OUR STORY
         </span>
-        <h2 className="font-serif text-3xl font-bold text-[#2B1B2D]">
+        <h2 className="font-serif text-3xl font-bold text-[#0F172A]">
           The Storybook 📖
         </h2>
       </div>
 
       {/* 3D Storybook Presentation */}
-      <div className="w-full bg-[#FFFDF9] rounded-3xl p-5 sm:p-6 shadow-2luv border-2 border-[#FED7AA] relative overflow-hidden flex flex-col items-center">
+      <div className="w-full bg-[#FFFDF9] rounded-3xl p-5 shadow-2luv border-2 border-blue-200 relative overflow-hidden flex flex-col items-center">
         {/* Washi tape header */}
-        <div className="washi-tape-pink w-28 h-5 absolute -top-2 left-1/2 -translate-x-1/2 -rotate-1" />
+        <div className="washi-tape-blue w-28 h-5 absolute -top-2 left-1/2 -translate-x-1/2 -rotate-1" />
 
         {/* Page flip animation container */}
         <AnimatePresence mode="wait">
@@ -81,15 +81,15 @@ export default function StageStorybook({ onNext }) {
             className="w-full flex flex-col items-center text-center"
           >
             {/* Chapter Header */}
-            <span className="text-[10px] font-mono font-bold tracking-widest text-[#E6496C] uppercase mt-1">
+            <span className="text-[10px] font-mono font-bold tracking-widest text-[#2563EB] uppercase mt-1">
               {curr.chapter} • {curr.date}
             </span>
-            <h3 className="font-serif text-2xl font-bold text-[#2B1B2D] mt-1 mb-3">
+            <h3 className="font-serif text-2xl font-bold text-[#0F172A] mt-1 mb-3">
               {curr.title}
             </h3>
 
             {/* Chapter Photo */}
-            <div className="w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-inner border border-gray-200 mb-3 bg-pink-50">
+            <div className="w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-inner border border-blue-100 mb-3 bg-blue-50">
               <img
                 src={curr.image}
                 alt={curr.title}
@@ -98,18 +98,18 @@ export default function StageStorybook({ onNext }) {
             </div>
 
             {/* Chapter Text */}
-            <p className="text-xs sm:text-sm text-[#4A3E4D] font-medium leading-relaxed font-sans px-2">
+            <p className="text-xs sm:text-sm text-[#334155] font-medium leading-relaxed font-sans px-2">
               {curr.text}
             </p>
           </motion.div>
         </AnimatePresence>
 
         {/* Page Navigation Chevrons & Dots */}
-        <div className="w-full flex items-center justify-between mt-5 pt-3 border-t border-dashed border-gray-200">
+        <div className="w-full flex items-center justify-between mt-5 pt-3 border-t border-dashed border-blue-100">
           <button
             onClick={prevPage}
             disabled={currentPage === 0}
-            className="p-2 rounded-full text-[#E6496C] hover:bg-pink-50 disabled:opacity-30 cursor-pointer"
+            className="p-2 rounded-full text-[#2563EB] hover:bg-blue-50 disabled:opacity-30 cursor-pointer"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
@@ -119,7 +119,7 @@ export default function StageStorybook({ onNext }) {
               <span
                 key={i}
                 className={`w-2 h-2 rounded-full transition-all ${
-                  currentPage === i ? 'w-5 bg-[#E6496C]' : 'bg-gray-300'
+                  currentPage === i ? 'w-5 bg-[#2563EB]' : 'bg-gray-300'
                 }`}
               />
             ))}
@@ -128,7 +128,7 @@ export default function StageStorybook({ onNext }) {
           <button
             onClick={nextPage}
             disabled={currentPage === chapters.length - 1}
-            className="p-2 rounded-full text-[#E6496C] hover:bg-pink-50 disabled:opacity-30 cursor-pointer"
+            className="p-2 rounded-full text-[#2563EB] hover:bg-blue-50 disabled:opacity-30 cursor-pointer"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
@@ -141,7 +141,7 @@ export default function StageStorybook({ onNext }) {
           onClick={onNext}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
-          className="w-full py-3.5 rounded-full bg-gradient-to-r from-[#E6496C] to-[#D12E57] text-white font-bold text-sm shadow-float hover:brightness-105 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
+          className="w-full py-3.5 rounded-full bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] text-white font-bold text-sm shadow-float hover:brightness-105 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
         >
           <span>Next surprise: The Star Wish Jar 🌟</span>
           <ArrowRight className="w-4 h-4" />

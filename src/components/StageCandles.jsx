@@ -11,9 +11,9 @@ export default function StageCandles({ onReplay }) {
     sounds.playBlowCandles();
     setCandlesBlown(true);
 
-    // Full celebration confetti cannon
+    // Full celebration confetti cannon in royal blue, sky cyan, gold & silver
     const end = Date.now() + 3.5 * 1000;
-    const colors = ['#E6496C', '#F472B6', '#38BDF8', '#FBBF24', '#B7E4C7', '#E8DEF8'];
+    const colors = ['#2563EB', '#38BDF8', '#60A5FA', '#FBBF24', '#F59E0B', '#93C5FD'];
 
     (function frame() {
       confetti({
@@ -42,19 +42,19 @@ export default function StageCandles({ onReplay }) {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto flex flex-col items-center select-none py-3 px-2 text-center">
+    <div className="w-full max-w-md mx-auto flex flex-col items-center select-none py-2 px-2 text-center">
       {/* Surprise Subtitle */}
-      <div className="text-center mb-3">
-        <span className="text-[11px] font-mono font-bold tracking-widest text-[#E6496C] uppercase">
+      <div className="text-center mb-2">
+        <span className="text-[11px] font-mono font-bold tracking-widest text-[#2563EB] uppercase">
           SURPRISE 08 • THE CANDLES
         </span>
-        <h2 className="font-serif text-3xl font-bold text-[#2B1B2D]">
+        <h2 className="font-serif text-3xl font-bold text-[#0F172A]">
           Make Your Wish 🕯️
         </h2>
       </div>
 
       {/* Main Cake Stage Canvas */}
-      <div className="w-full bg-[#FFFDF9] rounded-3xl p-6 shadow-2luv border-2 border-pink-200 relative overflow-hidden flex flex-col items-center">
+      <div className="w-full bg-[#FFFDF9] rounded-3xl p-6 shadow-2luv border-2 border-blue-200 relative overflow-hidden flex flex-col items-center">
         {/* Floating party balloons */}
         <motion.div
           animate={{ y: [-6, 6, -6], rotate: [-4, 4, -4] }}
@@ -103,18 +103,18 @@ export default function StageCandles({ onReplay }) {
                     </motion.span>
                   )}
                 </AnimatePresence>
-                <div className="w-2.5 h-9 bg-gradient-to-r from-pink-300 via-white to-pink-300 rounded-t border border-pink-400 shadow-sm" />
+                <div className="w-2.5 h-9 bg-gradient-to-r from-blue-300 via-white to-blue-300 rounded-t border border-blue-400 shadow-sm" />
               </div>
             ))}
           </div>
 
           {/* Top Cake Tier */}
-          <div className="w-32 h-14 bg-gradient-to-r from-[#FED7AA] via-[#FDE68A] to-[#FBCFE8] rounded-t-2xl border-2 border-white relative flex items-center justify-center shadow-md">
-            <span className="text-xs font-hand text-[#2B1B2D] font-bold">Simjim 👑</span>
+          <div className="w-32 h-14 bg-gradient-to-r from-[#BAE6FD] via-[#E0F2FE] to-[#93C5FD] rounded-t-2xl border-2 border-white relative flex items-center justify-center shadow-md">
+            <span className="text-xs font-hand text-[#0F172A] font-bold">Simjim 👑</span>
           </div>
 
           {/* Bottom Cake Tier */}
-          <div className="w-48 h-18 bg-gradient-to-r from-[#FBCFE8] via-[#F472B6] to-[#E6496C] rounded-2xl border-2 border-white relative flex items-center justify-center shadow-lg">
+          <div className="w-48 h-18 bg-gradient-to-r from-[#93C5FD] via-[#60A5FA] to-[#2563EB] rounded-2xl border-2 border-white relative flex items-center justify-center shadow-lg">
             <p className="font-serif text-white text-base font-bold tracking-wide drop-shadow">
               Happy Birthday!
             </p>
@@ -127,14 +127,14 @@ export default function StageCandles({ onReplay }) {
         {/* Action Controls */}
         {!candlesBlown ? (
           <div className="w-full flex flex-col items-center mt-2">
-            <p className="text-xs text-[#6B5E6E] font-medium mb-3">
+            <p className="text-xs text-[#475569] font-medium mb-3">
               Make a wish and blow out the candles 🕯️
             </p>
             <motion.button
               onClick={handleBlowCandles}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full py-4 rounded-full bg-gradient-to-r from-[#E6496C] to-[#D12E57] text-white font-bold text-base shadow-float flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-4 rounded-full bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] text-white font-bold text-base shadow-float flex items-center justify-center gap-2 cursor-pointer"
             >
               <Wind className="w-5 h-5" />
               <span>Blow out the candles 🕯️💨</span>
@@ -148,21 +148,21 @@ export default function StageCandles({ onReplay }) {
             className="w-full flex flex-col items-center mt-2"
           >
             {/* Climax Certificate */}
-            <div className="w-full bg-gradient-to-br from-[#FFF1F2] to-[#FFE4E6] p-5 rounded-2xl border-2 border-pink-300 shadow-sm text-center my-2">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[#E6496C] text-xs font-bold mb-2 shadow-sm">
+            <div className="w-full bg-gradient-to-br from-[#EFF6FF] to-[#DBEAFE] p-5 rounded-2xl border-2 border-blue-300 shadow-sm text-center my-2">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[#2563EB] text-xs font-bold mb-2 shadow-sm">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>YOUR WISH IS ON ITS WAY! 🌟</span>
               </div>
 
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2B1B2D]">
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F172A]">
                 Happy Birthday, Simjim! 🎂💙
               </h3>
 
-              <p className="text-xs sm:text-sm text-[#4A3E4D] font-medium leading-relaxed mt-2">
+              <p className="text-xs sm:text-sm text-[#334155] font-medium leading-relaxed mt-2">
                 "May your year be filled with endless smiles, pure peace, good health, and all the love in the universe. You are officially Surya's favorite Thangapulla forever!"
               </p>
 
-              <div className="mt-3 pt-2 border-t border-pink-200 text-xs font-hand text-[#E6496C] font-bold text-base">
+              <div className="mt-3 pt-2 border-t border-blue-200 text-xs font-hand text-[#2563EB] font-bold text-base">
                 Forever with love, Surya 👑✨
               </div>
             </div>
@@ -171,15 +171,15 @@ export default function StageCandles({ onReplay }) {
             <div className="w-full flex items-center gap-2 mt-3">
               <button
                 onClick={handleRelight}
-                className="flex-1 py-2.5 rounded-xl bg-white border border-pink-200 text-[#2B1B2D] text-xs font-bold hover:bg-pink-50 transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-sm"
+                className="flex-1 py-2.5 rounded-xl bg-white border border-blue-200 text-[#0F172A] text-xs font-bold hover:bg-blue-50 transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-sm"
               >
-                <RotateCcw className="w-3.5 h-3.5 text-[#E6496C]" />
+                <RotateCcw className="w-3.5 h-3.5 text-[#2563EB]" />
                 <span>Relight candles ↺</span>
               </button>
 
               <button
                 onClick={onReplay}
-                className="flex-1 py-2.5 rounded-xl bg-[#E6496C] text-white text-xs font-bold hover:bg-[#D12E57] transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-md"
+                className="flex-1 py-2.5 rounded-xl bg-[#2563EB] text-white text-xs font-bold hover:bg-[#1D4ED8] transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-md"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 <span>Replay gift ↺</span>

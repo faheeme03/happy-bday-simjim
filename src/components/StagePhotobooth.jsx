@@ -38,30 +38,30 @@ export default function StagePhotobooth({ onNext, customPhotos, onUploadClick })
   };
 
   return (
-    <div className="w-full max-w-md mx-auto flex flex-col items-center select-none py-3 px-2">
+    <div className="w-full max-w-md mx-auto flex flex-col items-center select-none py-2 px-2">
       {/* Surprise Subtitle */}
-      <div className="text-center mb-3">
-        <span className="text-[11px] font-mono font-bold tracking-widest text-[#E6496C] uppercase">
+      <div className="text-center mb-2">
+        <span className="text-[11px] font-mono font-bold tracking-widest text-[#2563EB] uppercase">
           SURPRISE 05 • MOMENTS
         </span>
-        <h2 className="font-serif text-3xl font-bold text-[#2B1B2D]">
+        <h2 className="font-serif text-3xl font-bold text-[#0F172A]">
           The Photo Booth 📸
         </h2>
       </div>
 
       {/* Photo Booth Graphic & Strip Ejection */}
-      <div className="w-full bg-[#FFFDF9] rounded-3xl p-5 shadow-2luv border-2 border-pink-200 relative overflow-hidden flex flex-col items-center">
+      <div className="w-full bg-[#FFFDF9] rounded-3xl p-5 shadow-2luv border-2 border-blue-200 relative overflow-hidden flex flex-col items-center">
         {!isPrinted ? (
           /* Pre-print Photo Booth Cabinet */
           <div className="flex flex-col items-center my-6">
-            <div className="w-20 h-20 rounded-3xl bg-gradient-to-tr from-[#E6496C] to-[#FDA4AF] shadow-lg flex items-center justify-center text-white mb-4">
+            <div className="w-20 h-20 rounded-3xl bg-gradient-to-tr from-[#2563EB] to-[#38BDF8] shadow-lg flex items-center justify-center text-white mb-4">
               <Camera className="w-10 h-10" />
             </div>
 
-            <h3 className="font-serif text-xl font-bold text-[#2B1B2D]">
+            <h3 className="font-serif text-xl font-bold text-[#0F172A]">
               Capture The Moments
             </h3>
-            <p className="text-xs text-[#6B5E6E] font-medium max-w-xs text-center mt-1 mb-5">
+            <p className="text-xs text-[#475569] font-medium max-w-xs text-center mt-1 mb-5">
               4 special memory frames printed from our retro photobooth.
             </p>
 
@@ -69,7 +69,7 @@ export default function StagePhotobooth({ onNext, customPhotos, onUploadClick })
               onClick={handlePrint}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#E6496C] to-[#D12E57] text-white font-bold text-sm shadow-float flex items-center gap-2 cursor-pointer"
+              className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] text-white font-bold text-sm shadow-float flex items-center gap-2 cursor-pointer"
             >
               <Printer className="w-4 h-4" />
               <span>Print Photo Booth Strip 📸</span>
@@ -86,10 +86,10 @@ export default function StagePhotobooth({ onNext, customPhotos, onUploadClick })
             {/* The Vintage Filmstrip */}
             <div className="w-[260px] bg-[#FAF8F5] rounded-xl p-3 shadow-polaroid border border-gray-300 relative flex flex-col items-center">
               {/* Top washi tape */}
-              <div className="washi-tape-pink w-28 h-5 absolute -top-2.5 left-1/2 -translate-x-1/2 -rotate-1 z-10" />
+              <div className="washi-tape-blue w-28 h-5 absolute -top-2.5 left-1/2 -translate-x-1/2 -rotate-1 z-10" />
 
               {/* Film Strip Header */}
-              <div className="w-full flex items-center justify-between text-[10px] font-mono font-bold text-[#E6496C] px-1 mb-2">
+              <div className="w-full flex items-center justify-between text-[10px] font-mono font-bold text-[#2563EB] px-1 mb-2">
                 <span>PHOTOBOOTH</span>
                 <span>SERIES 2026</span>
               </div>
@@ -108,7 +108,7 @@ export default function StagePhotobooth({ onNext, customPhotos, onUploadClick })
                       alt={p.caption}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-bold">
+                    <div className="absolute inset-0 bg-blue-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-bold">
                       View Polaroid ✨
                     </div>
                     <span className="absolute bottom-1 left-2 text-[10px] font-hand font-bold text-white drop-shadow">
@@ -127,7 +127,7 @@ export default function StagePhotobooth({ onNext, customPhotos, onUploadClick })
             </div>
 
             {/* Helper Hint */}
-            <p className="text-[11px] text-[#6B5E6E] font-medium mt-3">
+            <p className="text-[11px] text-[#475569] font-medium mt-3">
               💡 Tip: Tap any photo above to inspect polaroid!
             </p>
           </motion.div>
@@ -159,10 +159,10 @@ export default function StagePhotobooth({ onNext, customPhotos, onUploadClick })
                 />
               </div>
 
-              <p className="font-hand text-xl font-bold text-[#2B1B2D] text-center">
+              <p className="font-hand text-xl font-bold text-[#0F172A] text-center">
                 {activePhoto.caption}
               </p>
-              <span className="text-[10px] font-mono text-[#E6496C] font-bold mt-1">
+              <span className="text-[10px] font-mono text-[#2563EB] font-bold mt-1">
                 FOR SIMJIM 💙 FROM SURYA
               </span>
             </motion.div>
@@ -177,7 +177,7 @@ export default function StagePhotobooth({ onNext, customPhotos, onUploadClick })
             onClick={onNext}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            className="w-full py-3.5 rounded-full bg-gradient-to-r from-[#E6496C] to-[#D12E57] text-white font-bold text-sm shadow-float hover:brightness-105 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full py-3.5 rounded-full bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] text-white font-bold text-sm shadow-float hover:brightness-105 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
             <span>Next surprise: Our Date 🗓️</span>
             <ArrowRight className="w-4 h-4" />
